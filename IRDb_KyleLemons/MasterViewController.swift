@@ -8,6 +8,23 @@
 
 import UIKit
 
+struct Franchise: Codable {
+    let franchiseName: String
+    let entries: [Entry]
+}
+
+struct Entry: Codable {
+    let name: String
+    let format: String
+    let yearStart: String
+    let yearEnd: String
+    let episodes: integer_t
+    let network: String
+    let imageURL: String
+    let description: String
+    let summary: String
+}
+
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
@@ -18,6 +35,27 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        let url = "https://api.myjson.com/bins/1e5uji"
+        let urlObj = URL(string:url)
+        
+        URLSession.shared.dataTask(with: urlObj!){(data, response, error) in
+            
+            do {
+                let entries = try JSONDecoder().decode([Entry].self, from: data!)
+                for entry in entries {
+                    print(entry.name + ": " + entry.format)
+                }
+            } catch {
+                print("We got an error!")
+            }
+            
+        }.resume()
+        
+        
+        
+        
+        
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton

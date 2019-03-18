@@ -15,6 +15,7 @@
 		7EA65596223FD10E000ED6D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EA65594223FD10E000ED6D8 /* LaunchScreen.storyboard */; };
 		7EA655A1223FD10E000ED6D8 /* IRDb_KyleLemonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA655A0223FD10E000ED6D8 /* IRDb_KyleLemonsTests.swift */; };
 		7EA655AC223FD10E000ED6D8 /* IRDb_KyleLemonsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA655AB223FD10E000ED6D8 /* IRDb_KyleLemonsUITests.swift */; };
+		7EA655BA223FD3B6000ED6D8 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA655B9223FD3B6000ED6D8 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		7EA655A7223FD10E000ED6D8 /* IRDb_KyleLemonsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IRDb_KyleLemonsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA655AB223FD10E000ED6D8 /* IRDb_KyleLemonsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRDb_KyleLemonsUITests.swift; sourceTree = "<group>"; };
 		7EA655AD223FD10E000ED6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EA655B9223FD3B6000ED6D8 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				7EA65589223FD10E000ED6D8 /* AppDelegate.swift */,
 				7EA6558B223FD10E000ED6D8 /* MasterViewController.swift */,
+				7EA655B9223FD3B6000ED6D8 /* DataModel.swift */,
 				7EA6558D223FD10E000ED6D8 /* DetailViewController.swift */,
 				7EA6558F223FD10E000ED6D8 /* Main.storyboard */,
 				7EA65592223FD10E000ED6D8 /* Assets.xcassets */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EA6558E223FD10E000ED6D8 /* DetailViewController.swift in Sources */,
+				7EA655BA223FD3B6000ED6D8 /* DataModel.swift in Sources */,
 				7EA6558C223FD10E000ED6D8 /* MasterViewController.swift in Sources */,
 				7EA6558A223FD10E000ED6D8 /* AppDelegate.swift in Sources */,
 			);
