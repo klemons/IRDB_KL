@@ -8,9 +8,6 @@
 
 import UIKit
 
-class DataModel: NSObject {
+class DataModel: Codable {
     
-    
-    
-
 }

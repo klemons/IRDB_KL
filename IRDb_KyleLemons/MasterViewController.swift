@@ -8,20 +8,20 @@
 
 import UIKit
 
-struct Franchise: Codable {
+struct franchise: Codable {
     let franchiseName: String
-    let entries: [Entry]
+    let entries: [entry]
 }
 
-struct Entry: Codable {
+struct entry: Codable {
     let name: String
     let format: String
     let yearStart: String
-    let yearEnd: String
-    let episodes: integer_t
-    let network: String
+    let yearEnd: String?
+    let episodes: Int?
+    let network: String?
     let imageURL: String
-    let description: String
+    //let description: String
     let summary: String
 }
 
@@ -37,17 +37,21 @@ class MasterViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         let url = "https://api.myjson.com/bins/1e5uji"
-        let urlObj = URL(string:url)
+        guard let urlObj = URL(string:url) else{
+            print("bad url")
+            return
+        }
         
-        URLSession.shared.dataTask(with: urlObj!){(data, response, error) in
+        URLSession.shared.dataTask(with: urlObj){(data, response, error) in
             
             do {
-                let entries = try JSONDecoder().decode([Entry].self, from: data!)
-                for entry in entries {
-                    print(entry.name + ": " + entry.format)
+                let decoder = JSONDecoder()
+                var blog = try decoder.decode(franchise.self, from: data!)
+                for franchise in blog.franchiseName {
+                    print(blog.franchiseName)
                 }
             } catch {
-                print("We got an error!")
+                print(error)
             }
             
         }.resume()
