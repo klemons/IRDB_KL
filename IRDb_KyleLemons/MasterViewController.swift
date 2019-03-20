@@ -8,7 +8,11 @@
 
 import UIKit
 
-struct franchise: Codable {
+struct DataMovieModel: Codable {
+    var franchise: [franchises]
+}
+
+struct franchises: Codable {
     let franchiseName: String
     let entries: [entry]
 }
@@ -46,9 +50,9 @@ class MasterViewController: UITableViewController {
             
             do {
                 let decoder = JSONDecoder()
-                var blog = try decoder.decode(franchise.self, from: data!)
-                for franchise in blog.franchiseName {
-                    print(blog.franchiseName)
+                var blog = try decoder.decode(DataMovieModel.self, from: data!)
+                for franchise in blog.franchise {
+                    print(blog.franchise)
                 }
             } catch {
                 print(error)
