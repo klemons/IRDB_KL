@@ -8,27 +8,16 @@
 
 import UIKit
 
-struct franchise: Codable {
-    let franchiseName: String
-    let entries: [entry]
-}
-
-struct entry: Codable {
-    let name: String
-    let format: String
-    let yearStart: String
-    let yearEnd: String?
-    let episodes: Int?
-    let network: String?
-    let imageURL: String
-    //let description: String
-    let summary: String
-}
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
+//    var newDataModel = MovieDataModel? {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
 
 
     override func viewDidLoad() {
@@ -46,10 +35,8 @@ class MasterViewController: UITableViewController {
             
             do {
                 let decoder = JSONDecoder()
-                var blog = try decoder.decode(franchise.self, from: data!)
-                for franchise in blog.franchiseName {
-                    print(blog.franchiseName)
-                }
+                var blog = try decoder.decode(MovieDataModel.self, from: data!)
+                    print(MovieDataModel.franchise[0].franchiseName)
             } catch {
                 print(error)
             }
