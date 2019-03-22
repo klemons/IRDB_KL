@@ -8,6 +8,26 @@
 
 import UIKit
 
+struct DataMovieModel: Codable {
+    var franchise: [franchises]
+}
+
+struct franchises: Codable {
+    let franchiseName: String
+    let entries: [entry]
+}
+
+struct entry: Codable {
+    let name: String
+    let format: String
+    let yearStart: String
+    let yearEnd: String?
+    let episodes: Int?
+    let network: String?
+    let imageURL: String
+    //let description: String
+    let summary: String
+}
 
 class MasterViewController: UITableViewController {
 
