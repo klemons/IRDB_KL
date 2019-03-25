@@ -31,7 +31,7 @@ class MovieDataController: NSObject {
             }
             
             DispatchQueue.main.async {
-                completion(self.myModel as! MovieDataModel)
+                completion((self.myModel != nil))
             }
             
             }.resume()
