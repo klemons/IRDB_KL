@@ -8,63 +8,45 @@
 
 import UIKit
 
-struct DataMovieModel: Codable {
-    var franchise: [franchises]
-}
-
-struct franchises: Codable {
-    let franchiseName: String
-    let entries: [entry]
-}
-
-struct entry: Codable {
-    let name: String
-    let format: String
-    let yearStart: String
-    let yearEnd: String?
-    let episodes: Int?
-    let network: String?
-    let imageURL: String
-    //let description: String
-    let summary: String
-}
+//struct DataMovieModel: Codable {
+//    var franchise: [franchises]
+//}
+//
+//struct franchises: Codable {
+//    let franchiseName: String
+//    let entries: [entry]
+//}
+//
+//struct entry: Codable {
+//    let name: String
+//    let format: String
+//    let yearStart: String
+//    let yearEnd: String?
+//    let episodes: Int?
+//    let network: String?
+//    let imageURL: String
+//    //let description: String
+//    let summary: String
+//}
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
-//    var newDataModel = MovieDataModel? {
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
+    let dataController = MovieDataController()
+    var newDataModel = MovieDataModel?.self {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        let url = "https://api.myjson.com/bins/1e5uji"
-        guard let urlObj = URL(string:url) else{
-            print("bad url")
-            return
-        }
-        
-        URLSession.shared.dataTask(with: urlObj){(data, response, error) in
-            
-            do {
-                let decoder = JSONDecoder()
-                var blog = try decoder.decode(MovieDataModel.self, from: data!)
-                    print(MovieDataModel.franchise[0].franchiseName)
-            } catch {
-                print(error)
-            }
-            
-        }.resume()
-        
-        
-        
         
         
 

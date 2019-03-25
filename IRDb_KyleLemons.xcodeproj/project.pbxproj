@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E71A0D122490ADC0031AEEC /* MovieDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E71A0D022490ADC0031AEEC /* MovieDataController.swift */; };
 		7EA6558A223FD10E000ED6D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA65589223FD10E000ED6D8 /* AppDelegate.swift */; };
 		7EA6558C223FD10E000ED6D8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA6558B223FD10E000ED6D8 /* MasterViewController.swift */; };
 		7EA6558E223FD10E000ED6D8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA6558D223FD10E000ED6D8 /* DetailViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E71A0D022490ADC0031AEEC /* MovieDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataController.swift; sourceTree = "<group>"; };
 		7EA65586223FD10E000ED6D8 /* IRDb_KyleLemons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IRDb_KyleLemons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA65589223FD10E000ED6D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EA6558B223FD10E000ED6D8 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				7EA65592223FD10E000ED6D8 /* Assets.xcassets */,
 				7EA65594223FD10E000ED6D8 /* LaunchScreen.storyboard */,
 				7EA65597223FD10E000ED6D8 /* Info.plist */,
+				7E71A0D022490ADC0031AEEC /* MovieDataController.swift */,
 			);
 			path = IRDb_KyleLemons;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				7EA6558E223FD10E000ED6D8 /* DetailViewController.swift in Sources */,
 				7EA655BA223FD3B6000ED6D8 /* DataModel.swift in Sources */,
 				7EA6558C223FD10E000ED6D8 /* MasterViewController.swift in Sources */,
+				7E71A0D122490ADC0031AEEC /* MovieDataController.swift in Sources */,
 				7EA6558A223FD10E000ED6D8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
