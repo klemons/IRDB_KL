@@ -57,6 +57,7 @@ class MasterViewController: UITableViewController {
         nav?.barStyle = UIBarStyle.black
         nav?.tintColor = UIColor(red:0.96, green:0.77, blue:0.28, alpha:1.0)
 
+
         // 3
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit

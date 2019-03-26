@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
+            self.navigationItem.title = detailItem?.name
             if let label = descriptionLabel {
                 label.text = detail.description
             }
@@ -94,8 +95,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.navigationBar.tintColor = UIColor(red:0.96, green:0.77, blue:0.28, alpha:1.0)
         configureView()
     }
+    
+//    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+//    label.center = CGPoint(x: 160, y: 285)
+//    label.textAlignment = .center
+//    label.text = "I'm a test label"
+//    self.view.addSubview(label)
 
     var detailItem: Entry? {
         didSet {
