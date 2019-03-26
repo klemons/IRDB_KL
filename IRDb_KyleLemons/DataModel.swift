@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDataModel: Codable {
+class DataModel: Codable {
     var franchise: [Franchise]
 }
 

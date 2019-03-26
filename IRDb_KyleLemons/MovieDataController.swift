@@ -14,27 +14,31 @@ class MovieDataController: NSObject {
     var myModel: Any?
 
     
-    func getData(completion: @escaping (_ success: Bool) ->())
+    func getData(completion: @escaping (_ myModel: DataModel) ->())
     {
-        let urlObj = URL(string:MYJSONURL)
+        let jsonURL = URL(string:MYJSONURL)
         
-        URLSession.shared.dataTask(with: urlObj!){(data, response, error) in
+        let dataTask = URLSession.shared.dataTask(with: jsonURL!) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
             
             do {
                 let decoder = JSONDecoder()
-                var blog = try decoder.decode(MovieDataModel.self, from: data!)
+                let mediaData = try
+                    decoder.decode(DataModel.self, from:data)
                 
-                
-                self.myModel = blog
-            } catch {
-                print(error)
+                self.myModel = mediaData
+            } catch let err {
+                print("Err", err)
             }
             
-            DispatchQueue.main.async {
-                completion((self.myModel != nil))
+            DispatchQueue.main.sync {
+                completion(self.myModel as! DataModel)
             }
             
-            }.resume()
+        }
+        dataTask.resume()
     }
     
     

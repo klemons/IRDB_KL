@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: NSDate? {
+    var detailItem: Entry? {
         didSet {
             // Update the view.
             configureView()

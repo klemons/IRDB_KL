@@ -8,33 +8,13 @@
 
 import UIKit
 
-//struct DataMovieModel: Codable {
-//    var franchise: [franchises]
-//}
-//
-//struct franchises: Codable {
-//    let franchiseName: String
-//    let entries: [entry]
-//}
-//
-//struct entry: Codable {
-//    let name: String
-//    let format: String
-//    let yearStart: String
-//    let yearEnd: String?
-//    let episodes: Int?
-//    let network: String?
-//    let imageURL: String
-//    //let description: String
-//    let summary: String
-//}
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
     let dataController = MovieDataController()
-    var newDataModel = MovieDataModel?.self {
+    var objects = [Any]()
+    var newDataModel: DataModel? {
         didSet {
             tableView.reloadData()
         }
@@ -46,8 +26,17 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        dataController.getData(completion: {dataModel in
-             self.newDataModel = dataModel
+        if let split = splitViewController {
+            let controllers = split.viewControllers
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+        
+        let titleImage = UIImage(named: "irdb")
+        let titleImageView = UIImageView(image: titleImage)
+        navigationItem.titleView = titleImageView
+        
+        dataController.getData(completion: {myModel in
+             self.newDataModel = myModel
         })
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -61,6 +50,23 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
+        // 1
+        let nav = self.navigationController?.navigationBar
+        
+        // 2
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.yellow
+        
+        // 3
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        
+        // 4
+        let image = UIImage(named: "irdb")
+        imageView.image = image
+        
+        // 5
+        navigationItem.titleView = imageView
     }
 
     @objc
@@ -75,7 +81,7 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = newDataModel!.franchise[indexPath.section].entries[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -87,18 +93,24 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return (newDataModel?.franchise.count) ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return (newDataModel?.franchise[section].franchiseName) ?? "No data yet"
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return (newDataModel?.franchise[section].entries.count) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let mediaName = (newDataModel?.franchise[indexPath.section].entries[indexPath.row].name)!
+        cell.textLabel!.text = mediaName
+        
+        let mediaYear = (newDataModel?.franchise[indexPath.section].entries[indexPath.row].yearStart)!
+        cell.detailTextLabel?.text = mediaYear
         return cell
     }
 
