@@ -19,12 +19,36 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var studioLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var movieImage: UIImageView!
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
-            if let label = detailDescriptionLabel {
+            if let label = descriptionLabel {
                 label.text = detail.description
+            }
+            if let labelS = summaryLabel {
+                labelS.text = detail.summary
+            }
+            
+            if let labelST = studioLabel {
+                labelST.text = detail.network
+            }
+            
+            if let labelY = yearLabel {
+                labelY.text = detail.yearStart
+            }
+            
+            if let labelFormat = formatLabel {
+                labelFormat.text = detail.format
+            }
+            
+            if let labelTitle = titleLabel {
+                labelTitle.text = detail.name
+            }
+            
+            if let ImageMovie = movieImage {
+                ImageMovie.image = UIImage(contentsOfFile: detail.imageURL)
             }
         }
     }
