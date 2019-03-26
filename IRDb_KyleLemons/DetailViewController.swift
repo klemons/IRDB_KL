@@ -47,10 +47,48 @@ class DetailViewController: UIViewController {
                 labelTitle.text = detail.name
             }
             
+            if let episodeNumber = episodeLabel {
+                episodeNumber.text = "\(detail.episodes)"
+            }
+            
             if let ImageMovie = movieImage {
                 ImageMovie.image = UIImage(contentsOfFile: detail.imageURL)
             }
+            
+            getItImage (url: URL(string: detail.imageURL)!) { (image, error) in
+                if error != nil { //check for error when retreaving image
+                    print(error?.localizedDescription)
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.movieImage.image = image
+                }
+            }
+            
         }
+    }
+    
+    func getItImage(url:URL, completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void){
+        
+        var picture: UIImage?
+        let session = URLSession.shared
+        let task = session.downloadTask(with: url) { (fileURL, response, error) in
+            if error != nil{
+                completion(picture,error)
+                return
+            }
+            if let fileURL = fileURL{
+                do{
+                    let data = try Data(contentsOf: fileURL)
+                    picture = UIImage(data: data)
+                }catch {
+                    completion(picture,error)
+                    return
+                }
+            }
+            completion(picture,error)
+        }
+        task.resume()
     }
 
     override func viewDidLoad() {
