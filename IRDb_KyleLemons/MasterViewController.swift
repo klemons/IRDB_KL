@@ -24,7 +24,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        navigationItem.leftBarButtonItem = editButtonItem
+//        navigationItem.leftBarButtonItem = editButtonItem
         
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -39,8 +39,8 @@ class MasterViewController: UITableViewController {
              self.newDataModel = myModel
         })
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+//        navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -55,8 +55,8 @@ class MasterViewController: UITableViewController {
         
         // 2
         nav?.barStyle = UIBarStyle.black
-        nav?.tintColor = UIColor.yellow
-        
+        nav?.tintColor = UIColor(red:0.96, green:0.77, blue:0.28, alpha:1.0)
+
         // 3
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
